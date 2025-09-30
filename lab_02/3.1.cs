@@ -23,7 +23,7 @@ public class DocumentWorker
     }
 }
 
-public class ProDocumentWorker:DocumentWorker
+public class ProDocumentWorker : DocumentWorker
 {
     public override void EditDocument()
     {
@@ -46,7 +46,6 @@ public class ExpertDocumentWorker : ProDocumentWorker
         Console.WriteLine(" ");
     }
 }
-
 class Program
 {
     static void Main()
@@ -54,36 +53,22 @@ class Program
         Console.WriteLine("Введите ключ доступа");
         string key = Console.ReadLine();
 
-        if (key == "")
+        DocumentWorker worker = key switch
         {
-            DocumentWorker worker = new DocumentWorker();
-            worker.OpenDocument();
-            worker.EditDocument();
-            worker.SaveDocument();
+            "pro" => new ProDocumentWorker(),
+            "exp" => new ExpertDocumentWorker(),
+            "" => new DocumentWorker(),
+            _ => null
+        };
 
-        }
-
-        else if (key == "pro")
-        {
-            DocumentWorker worker = new ProDocumentWorker();
-            worker.OpenDocument();
-            worker.EditDocument();
-            worker.SaveDocument();
-
-        }
-
-        else if (key == "exp")
-        {
-            DocumentWorker worker = new ExpertDocumentWorker();
-            worker.OpenDocument();
-            worker.EditDocument();
-            worker.SaveDocument();
-
-        }
-
-        else
+        if (worker == null)
         {
             Console.WriteLine("Неправильный ключ доступа");
+            return;
         }
+
+        worker.OpenDocument();
+        worker.EditDocument();
+        worker.SaveDocument();
     }
 }
