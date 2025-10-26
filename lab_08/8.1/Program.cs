@@ -20,7 +20,6 @@ namespace FileSearchAndCompress
                 return;
             }
 
-            // Рекурсивный поиск
             string[] files = Directory.GetFiles(path, fileName, SearchOption.AllDirectories);
 
             if (files.Length == 0)
@@ -32,7 +31,6 @@ namespace FileSearchAndCompress
             string foundFile = files[0];
             Console.WriteLine($"✅ Найден файл: {foundFile}");
 
-            // Чтение содержимого через FileStream
             Console.WriteLine("\n=== Содержимое файла ===");
             using (FileStream fs = new FileStream(foundFile, FileMode.Open, FileAccess.Read))
             using (StreamReader reader = new StreamReader(fs))
@@ -40,7 +38,6 @@ namespace FileSearchAndCompress
                 Console.WriteLine(reader.ReadToEnd());
             }
 
-            // Сжатие файла
             string compressedFile = foundFile + ".gz";
             using (FileStream sourceStream = new FileStream(foundFile, FileMode.Open))
             using (FileStream targetStream = new FileStream(compressedFile, FileMode.Create))
@@ -53,4 +50,5 @@ namespace FileSearchAndCompress
         }
     }
 }
+
 
