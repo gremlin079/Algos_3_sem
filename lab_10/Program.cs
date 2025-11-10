@@ -17,22 +17,17 @@ class Program
 
         InitDatabase();
 
-        // Загружаем тикеры
         string[] tickers = File.ReadAllLines("ticker.txt");
         Console.WriteLine($"Загружено {tickers.Length} тикеров\n");
 
-        // Добавляем тикеры в таблицу
         foreach (var t in tickers[..Math.Min(3, tickers.Length)])
             AddTicker(t.Trim());
 
-        // Загружаем цены
         foreach (var t in tickers[..Math.Min(3, tickers.Length)])
             await LoadPricesForTicker(t.Trim());
 
-        // Анализ
         AnalyzeConditions();
 
-        // Запрос пользователем
         Console.Write("\nВведите тикер для проверки: ");
         string userTicker = Console.ReadLine()?.Trim().ToUpper();
         if (!string.IsNullOrEmpty(userTicker))
@@ -148,7 +143,6 @@ class Program
         using var conn = new SqliteConnection(connectionString);
         conn.Open();
 
-        // очищаем таблицу
         var clear = conn.CreateCommand();
         clear.CommandText = "DELETE FROM TodaysCondition";
         clear.ExecuteNonQuery();
@@ -212,4 +206,5 @@ class Program
             Console.WriteLine($"Акция {ticker} сегодня: {res}");
     }
 }
+
 
