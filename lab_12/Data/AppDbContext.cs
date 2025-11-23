@@ -15,12 +15,10 @@ namespace TaxiCompanyApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Конфигурация для decimal поля
             modelBuilder.Entity<Trip>()
                 .Property(t => t.Price)
                 .HasPrecision(10, 2);
 
-            // Дополнительная конфигурация отношений
             modelBuilder.Entity<Trip>()
                 .HasOne(t => t.Driver)
                 .WithMany(d => d.Trips)
@@ -32,4 +30,5 @@ namespace TaxiCompanyApp.Data
                 .HasForeignKey(t => t.CarId);
         }
     }
+
 }
