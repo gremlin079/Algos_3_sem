@@ -1,0 +1,40 @@
+﻿@page
+@model TaxiCompanyApp.Pages.Trips.EditModel
+
+<h2>Редактировать поездку</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Trip.Id" />
+    <div class="form-group">
+        <label asp-for="Trip.FromAddress" class="control-label"></label>
+        <input asp-for="Trip.FromAddress" class="form-control" />
+        <span asp-validation-for="Trip.FromAddress" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.ToAddress" class="control-label"></label>
+        <input asp-for="Trip.ToAddress" class="form-control" />
+        <span asp-validation-for="Trip.ToAddress" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.TripDate" class="control-label"></label>
+        <input asp-for="Trip.TripDate" class="form-control" />
+        <span asp-validation-for="Trip.TripDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.Price" class="control-label"></label>
+        <input asp-for="Trip.Price" class="form-control" />
+        <span asp-validation-for="Trip.Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.DriverId" class="control-label"></label>
+        <select asp-for="Trip.DriverId" class="form-control" asp-items="ViewBag.DriverId"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.CarId" class="control-label"></label>
+        <select asp-for="Trip.CarId" class="form-control" asp-items="ViewBag.CarId"></select>
+    </div>
+    <div class="form-group mt-3">
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        <a asp-page="Index" class="btn btn-secondary">Назад к списку</a>
+    </div>
+</form>

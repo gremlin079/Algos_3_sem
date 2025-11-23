@@ -1,0 +1,23 @@
+﻿@page
+@model TaxiCompanyApp.Pages.Cars.DetailsModel
+
+<h2>Детали автомобиля</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Марка</dt>
+        <dd class="col-sm-10">@Model.Car.Brand</dd>
+        <dt class="col-sm-2">Модель</dt>
+        <dd class="col-sm-10">@Model.Car.Model</dd>
+        <dt class="col-sm-2">Гос. номер</dt>
+        <dd class="col-sm-10">@Model.Car.LicensePlate</dd>
+        <dt class="col-sm-2">Год выпуска</dt>
+        <dd class="col-sm-10">@Model.Car.Year</dd>
+        <dt class="col-sm-2">Цвет</dt>
+        <dd class="col-sm-10">@Model.Car.Color</dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Car.Id" class="btn btn-warning">Редактировать</a>
+    <a asp-page="./Index" class="btn btn-secondary">Назад к списку</a>
+</div>

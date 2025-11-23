@@ -1,0 +1,36 @@
+﻿@page
+@model TaxiCompanyApp.Pages.Drivers.CreateModel
+
+<h2>Добавить водителя</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Driver.FirstName" class="control-label"></label>
+        <input asp-for="Driver.FirstName" class="form-control" />
+        <span asp-validation-for="Driver.FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Driver.LastName" class="control-label"></label>
+        <input asp-for="Driver.LastName" class="form-control" />
+        <span asp-validation-for="Driver.LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Driver.Phone" class="control-label"></label>
+        <input asp-for="Driver.Phone" class="form-control" />
+        <span asp-validation-for="Driver.Phone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Driver.LicenseNumber" class="control-label"></label>
+        <input asp-for="Driver.LicenseNumber" class="form-control" />
+        <span asp-validation-for="Driver.LicenseNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Driver.Experience" class="control-label"></label>
+        <input asp-for="Driver.Experience" class="form-control" />
+        <span asp-validation-for="Driver.Experience" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <input type="submit" value="Создать" class="btn btn-primary" />
+        <a asp-page="Index" class="btn btn-secondary">Назад к списку</a>
+    </div>
+</form>
