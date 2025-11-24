@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TaxiParkAppMobile1.Pages.DriversPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Водители">
+    <Grid
+        Padding="16"
+        RowDefinitions="*,Auto">
+
+        <CollectionView
+            x:Name="DriversCollection"
+            Grid.Row="0"
+            ItemsSource="{Binding Drivers}"
+            SelectionMode="Single"
+            SelectionChanged="OnDriverSelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Reveal">
+                                <SwipeItem
+                                    BindingContext="{Binding .}"
+                                    BackgroundColor="#C62828"
+                                    Invoked="OnDriverDeleteRequested"
+                                    Text="Удалить" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <VerticalStackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="{Binding FirstName}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="{Binding LastName}"
+                                    TextColor="#616161" />
+                                <Label Text="{Binding Phone}" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" HorizontalOptions="End">
+                                <Label Text="{Binding LicenseNumber}" />
+                                <Label Text="{Binding Experience, StringFormat='Стаж: {0} лет'}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ScrollView Grid.Row="1" Margin="0,12,0,0">
+            <VerticalStackLayout Spacing="8">
+                <Label FontAttributes="Bold" Text="Добавить / изменить" />
+                <Entry
+                    x:Name="FirstNameEntry"
+                    Placeholder="Имя"
+                    ReturnType="Next" />
+                <Entry
+                    x:Name="LastNameEntry"
+                    Placeholder="Фамилия"
+                    ReturnType="Next" />
+                <Entry
+                    x:Name="PhoneEntry"
+                    Keyboard="Telephone"
+                    Placeholder="Телефон" />
+                <Entry
+                    x:Name="LicenseEntry"
+                    Placeholder="№ лицензии" />
+                <StackLayout Orientation="Horizontal" Spacing="8">
+                    <Label
+                        VerticalOptions="Center"
+                        Text="Стаж (лет)" />
+                    <Entry
+                        x:Name="ExperienceEntry"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Numeric"
+                        Placeholder="0" />
+                </StackLayout>
+                <Grid ColumnDefinitions="*,*">
+                    <Button
+                        Grid.Column="0"
+                        Clicked="OnSaveDriver"
+                        Text="Сохранить" />
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="#9E9E9E"
+                        Clicked="OnClearDriver"
+                        Text="Очистить" />
+                </Grid>
+                <Button
+                    x:Name="DeleteDriverButton"
+                    BackgroundColor="#C62828"
+                    Clicked="OnDeleteDriver"
+                    IsEnabled="False"
+                    Text="Удалить выбранного" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
+

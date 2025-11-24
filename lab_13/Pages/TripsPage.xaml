@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TaxiParkAppMobile1.Pages.TripsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Поездки">
+    <Grid
+        Padding="16"
+        RowDefinitions="*,Auto">
+
+        <CollectionView
+            x:Name="TripsCollection"
+            Grid.Row="0"
+            ItemsSource="{Binding Trips}"
+            SelectionMode="Single"
+            SelectionChanged="OnTripSelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Reveal">
+                                <SwipeItem
+                                    BindingContext="{Binding .}"
+                                    BackgroundColor="#C62828"
+                                    Invoked="OnTripDeleteRequested"
+                                    Text="Удалить" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="12" RowDefinitions="Auto,Auto,Auto">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="{Binding TripDate, StringFormat='{0:dd.MM.yyyy HH:mm}'}" />
+                            <Label
+                                Grid.Row="1"
+                                Text="{Binding FromAddress, StringFormat='Откуда: {0}'}" />
+                            <Label
+                                Grid.Row="2"
+                                Text="{Binding ToAddress, StringFormat='Куда: {0}'}" />
+                            <VerticalStackLayout HorizontalOptions="End" Spacing="2">
+                                <Label Text="{Binding Driver, StringFormat='Водитель: {0.LastName} {0.FirstName}'}" />
+                                <Label Text="{Binding Car, StringFormat='Авто: {0.Brand} {0.Model}'}" />
+                                <Label Text="{Binding Price, StringFormat='Цена: {0} ₽'}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ScrollView Grid.Row="1" Margin="0,12,0,0">
+            <VerticalStackLayout Spacing="8">
+                <Label FontAttributes="Bold" Text="Добавить / изменить" />
+                <Entry x:Name="FromEntry" Placeholder="Откуда" />
+                <Entry x:Name="ToEntry" Placeholder="Куда" />
+                <DatePicker x:Name="TripDatePicker" />
+                <Entry
+                    x:Name="PriceEntry"
+                    Keyboard="Numeric"
+                    Placeholder="Стоимость" />
+                <Picker
+                    x:Name="DriverPicker"
+                    ItemsSource="{Binding Drivers}"
+                    ItemDisplayBinding="{Binding LastName}"
+                    Title="Водитель" />
+                <Picker
+                    x:Name="CarPicker"
+                    ItemsSource="{Binding Cars}"
+                    ItemDisplayBinding="{Binding LicensePlate}"
+                    Title="Автомобиль" />
+                <Grid ColumnDefinitions="*,*">
+                    <Button
+                        Grid.Column="0"
+                        Clicked="OnSaveTrip"
+                        Text="Сохранить" />
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="#9E9E9E"
+                        Clicked="OnClearTrip"
+                        Text="Очистить" />
+                </Grid>
+                <Button
+                    x:Name="DeleteTripButton"
+                    BackgroundColor="#C62828"
+                    Clicked="OnDeleteTrip"
+                    IsEnabled="False"
+                    Text="Удалить выбранную" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
+

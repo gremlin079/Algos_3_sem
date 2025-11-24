@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TaxiParkAppMobile1.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TaxiParkAppMobile1"
+    xmlns:pages="clr-namespace:TaxiParkAppMobile1.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Таксопарк">
+
+    <TabBar>
+        <ShellContent
+            Title="Главная"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <ShellContent
+            Title="Водители"
+            ContentTemplate="{DataTemplate pages:DriversPage}"
+            Route="DriversPage" />
+        <ShellContent
+            Title="Авто"
+            ContentTemplate="{DataTemplate pages:CarsPage}"
+            Route="CarsPage" />
+        <ShellContent
+            Title="Поездки"
+            ContentTemplate="{DataTemplate pages:TripsPage}"
+            Route="TripsPage" />
+    </TabBar>
+
+</Shell>
